@@ -12,6 +12,12 @@ platform :ios do
       scheme: "App",
       configuration: "Release",
       export_method: "app-store",
+      output_directory: "build/ipa",
+      output_name: "App.ipa",
+      # KRITIK: xcargs, ARSIVLEME (xcodebuild archive) adimina uygulanir.
+      # export_xcargs ise SADECE IPA disa aktarma adimina uygulanir - "Signing for
+      # App requires a development team" hatasi, arsivleme adiminda takim/imzalama
+      # bilgisi hic verilmedigi icin olusuyordu. Ikisini de ayni bilgiyle donatiyoruz.
       xcargs: "CODE_SIGN_STYLE=Manual CODE_SIGN_IDENTITY=\"Apple Distribution\" DEVELOPMENT_TEAM=#{team_id} PROVISIONING_PROFILE_SPECIFIER=\"#{profile_name}\" -allowProvisioningUpdates",
       export_xcargs: "-allowProvisioningUpdates DEVELOPMENT_TEAM=#{team_id}",
       export_team_id: team_id,
